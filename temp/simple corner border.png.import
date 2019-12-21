@@ -1,0 +1,17 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/simple corner border.png-194a9e5d15180173ca780b8e892a9606.res"
+group_file="res://temp/test_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://temp/simple corner border.png"
+dest_files=[ "res://.import/simple corner border.png-194a9e5d15180173ca780b8e892a9606.res" ]
+
+[params]
+
+atlas_file="res://temp/test_atlas.png"
+import_mode=0

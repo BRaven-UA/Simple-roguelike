@@ -1,0 +1,269 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://World/Sectors/World_sector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Running arrows/RunningArrows.gd" type="Script" id=6]
+[ext_resource path="res://World/Running arrows/running_arrows.shader" type="Shader" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 7 )
+shader_param/arrows_color = Color( 0, 0, 0, 0.172549 )
+shader_param/background_color = Color( 1, 1, 1, 0 )
+shader_param/ratio = 0.7
+shader_param/speed = 1.0
+shader_param/offset = Vector2( -0.02, -0.05 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 7 )
+shader_param/arrows_color = Color( 0, 1, 0, 1 )
+shader_param/background_color = Color( 0, 0, 0, 0 )
+shader_param/ratio = 0.7
+shader_param/speed = 1.0
+shader_param/offset = null
+
+[node name="MainNode" type="Node2D"]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="World" type="CanvasLayer" parent="."]
+layer = 0
+script = ExtResource( 1 )
+
+[node name="Sectors" type="Control" parent="World"]
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Sector1" parent="World/Sectors" instance=ExtResource( 2 )]
+
+[node name="Sector26" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_right = 640.0
+
+[node name="Sector11" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_top = 256.0
+margin_bottom = 384.0
+
+[node name="Sector31" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 256.0
+margin_right = 640.0
+margin_bottom = 384.0
+
+[node name="Sector7" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 256.0
+margin_right = 384.0
+
+[node name="Sector32" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 768.0
+margin_right = 896.0
+
+[node name="Sector13" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 256.0
+margin_top = 256.0
+margin_right = 384.0
+margin_bottom = 384.0
+
+[node name="Sector39" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 768.0
+margin_top = 256.0
+margin_right = 896.0
+margin_bottom = 384.0
+
+[node name="Sector3" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_top = 128.0
+margin_bottom = 256.0
+
+[node name="Sector4" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 256.0
+margin_bottom = 256.0
+
+[node name="Sector5" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 128.0
+margin_right = 512.0
+margin_bottom = 256.0
+
+[node name="Sector22" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 128.0
+margin_right = 640.0
+margin_bottom = 256.0
+
+[node name="Sector10" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_top = 384.0
+margin_bottom = 512.0
+
+[node name="Sector33" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 384.0
+margin_right = 640.0
+margin_bottom = 512.0
+
+[node name="Sector19" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_top = 512.0
+margin_bottom = 640.0
+
+[node name="Sector28" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 512.0
+margin_right = 640.0
+margin_bottom = 640.0
+
+[node name="Sector6" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 384.0
+margin_bottom = 256.0
+
+[node name="Sector36" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 768.0
+margin_top = 128.0
+margin_right = 896.0
+margin_bottom = 256.0
+
+[node name="Sector16" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 256.0
+margin_top = 384.0
+margin_right = 384.0
+margin_bottom = 512.0
+
+[node name="Sector24" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 768.0
+margin_top = 384.0
+margin_right = 896.0
+margin_bottom = 512.0
+
+[node name="Sector18" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 256.0
+margin_top = 512.0
+margin_right = 384.0
+margin_bottom = 640.0
+
+[node name="Sector27" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 768.0
+margin_top = 512.0
+margin_right = 896.0
+margin_bottom = 640.0
+
+[node name="Sector2" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 128.0
+margin_right = 256.0
+
+[node name="Sector30" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 640.0
+margin_right = 768.0
+
+[node name="Sector12" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 128.0
+margin_top = 256.0
+margin_right = 256.0
+margin_bottom = 384.0
+
+[node name="Sector38" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 640.0
+margin_top = 256.0
+margin_right = 768.0
+margin_bottom = 384.0
+
+[node name="Sector8" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_right = 512.0
+
+[node name="Sector34" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 896.0
+margin_right = 1024.0
+
+[node name="Sector14" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 512.0
+margin_bottom = 384.0
+
+[node name="Sector40" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 896.0
+margin_top = 256.0
+margin_right = 1024.0
+margin_bottom = 384.0
+
+[node name="Sector21" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 640.0
+margin_top = 128.0
+margin_right = 768.0
+margin_bottom = 256.0
+
+[node name="Sector9" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 128.0
+margin_top = 384.0
+margin_right = 256.0
+margin_bottom = 512.0
+
+[node name="Sector37" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 640.0
+margin_top = 384.0
+margin_right = 768.0
+margin_bottom = 512.0
+
+[node name="Sector20" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 128.0
+margin_top = 512.0
+margin_right = 256.0
+margin_bottom = 640.0
+
+[node name="Sector25" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 640.0
+margin_top = 512.0
+margin_right = 768.0
+margin_bottom = 640.0
+
+[node name="Sector35" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 896.0
+margin_top = 128.0
+margin_right = 1024.0
+margin_bottom = 256.0
+
+[node name="Sector15" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 384.0
+margin_right = 512.0
+margin_bottom = 512.0
+
+[node name="Sector23" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 896.0
+margin_top = 384.0
+margin_right = 1024.0
+margin_bottom = 512.0
+
+[node name="Sector17" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 512.0
+margin_right = 512.0
+margin_bottom = 640.0
+
+[node name="Sector29" parent="World/Sectors" instance=ExtResource( 2 )]
+margin_left = 896.0
+margin_top = 512.0
+margin_right = 1024.0
+margin_bottom = 640.0
+
+[node name="RunningArrows" type="Control" parent="World"]
+margin_top = -16.0
+margin_right = 128.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 0, 16 )
+mouse_filter = 2
+script = ExtResource( 6 )
+
+[node name="Shadow" type="ColorRect" parent="World/RunningArrows"]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Arrows" type="ColorRect" parent="World/RunningArrows"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2

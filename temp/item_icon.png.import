@@ -1,0 +1,17 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/item_icon.png-ab6b450c7e8a9e2a74ed376efc8a1f5a.res"
+group_file="res://temp/test_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://temp/item_icon.png"
+dest_files=[ "res://.import/item_icon.png-ab6b450c7e8a9e2a74ed376efc8a1f5a.res" ]
+
+[params]
+
+atlas_file="res://temp/test_atlas.png"
+import_mode=0
