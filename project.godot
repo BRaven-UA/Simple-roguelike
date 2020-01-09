@@ -9,10 +9,35 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "ChargeIndicator",
+"language": "GDScript",
+"path": "res://GUI/ChargeIndicator.gd"
+}, {
+"base": "Node",
+"class": "Component",
+"language": "GDScript",
+"path": "res://World/Objects/Components/Component.gd"
+}, {
+"base": "CanvasLayer",
+"class": "GUI",
+"language": "GDScript",
+"path": "res://GUI/GUI.gd"
+}, {
 "base": "CanvasLayer",
 "class": "GameWorld",
 "language": "GDScript",
-"path": "res://World.gd"
+"path": "res://World/World.gd"
+}, {
+"base": "Node",
+"class": "Item",
+"language": "GDScript",
+"path": "res://World/Items/Item.gd"
+}, {
+"base": "Control",
+"class": "WorldObject",
+"language": "GDScript",
+"path": "res://World/Objects/World_object.gd"
 }, {
 "base": "Control",
 "class": "WorldSector",
@@ -20,7 +45,12 @@ _global_script_classes=[ {
 "path": "res://World/Sectors/World_sector.gd"
 } ]
 _global_script_class_icons={
+"ChargeIndicator": "",
+"Component": "",
+"GUI": "",
 "GameWorld": "",
+"Item": "",
+"WorldObject": "",
 "WorldSector": ""
 }
 
@@ -77,5 +107,5 @@ camera_reset={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.894118, 0.882353, 0.67451, 1 )
+environment/default_clear_color=Color( 0.5, 0.5, 0.5, 1 )
 environment/default_environment="res://default_env.tres"

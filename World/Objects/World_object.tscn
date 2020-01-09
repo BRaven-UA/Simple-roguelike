@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://temp/World_object.gd" type="Script" id=1]
-[ext_resource path="res://World/Objects/World_objects.png" type="Texture" id=2]
-
+[ext_resource path="res://World/Objects/World_object.gd" type="Script" id=1]
+[ext_resource path="res://World/Objects/generated_resources/AtlasTexture1.tres" type="Texture" id=2]
 
 [node name="Object" type="Control"]
 margin_right = 128.0
@@ -15,7 +14,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_texture_name = ""
 
 [node name="Picture" type="TextureRect" parent="."]
 anchor_right = 1.0

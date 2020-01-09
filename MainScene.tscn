@@ -1,12 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://World/Sectors/World_sector.tscn" type="PackedScene" id=2]
-[ext_resource path="res://World/Running arrows/RunningArrows.gd" type="Script" id=6]
-[ext_resource path="res://World/Running arrows/running_arrows.shader" type="Shader" id=7]
+[ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
+[ext_resource path="res://GUI/ChargeIndicator.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Charge under.png" type="Texture" id=3]
+[ext_resource path="res://GUI/Charge progress.png" type="Texture" id=4]
+[ext_resource path="res://World/World.gd" type="Script" id=5]
+[ext_resource path="res://World/Sectors/World_sector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://World/Objects/generated_resources/AtlasTexture11.tres" type="Texture" id=7]
+[ext_resource path="res://World/Objects/generated_resources/AtlasTexture5.tres" type="Texture" id=8]
+[ext_resource path="res://World/Objects/generated_resources/AtlasTexture2.tres" type="Texture" id=9]
+[ext_resource path="res://World/Objects/Components/Player.gd" type="Script" id=10]
+[ext_resource path="res://World/Objects/Components/Body.gd" type="Script" id=11]
+[ext_resource path="res://World/Objects/Components/Energy.gd" type="Script" id=12]
+[ext_resource path="res://World/Running arrows/RunningArrows.gd" type="Script" id=13]
+[ext_resource path="res://World/Running arrows/running_arrows.shader" type="Shader" id=14]
+[ext_resource path="res://World/fog.shader" type="Shader" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 7 )
+shader = ExtResource( 14 )
 shader_param/arrows_color = Color( 0, 0, 0, 0.172549 )
 shader_param/background_color = Color( 1, 1, 1, 0 )
 shader_param/ratio = 0.7
@@ -14,247 +25,343 @@ shader_param/speed = 1.0
 shader_param/offset = Vector2( -0.02, -0.05 )
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 7 )
+shader = ExtResource( 14 )
 shader_param/arrows_color = Color( 0, 1, 0, 1 )
 shader_param/background_color = Color( 0, 0, 0, 0 )
 shader_param/ratio = 0.7
 shader_param/speed = 1.0
 shader_param/offset = null
 
-[node name="MainNode" type="Node2D"]
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 15 )
+shader_param/color = Color( 0.3, 0.3, 0.2, 1 )
+shader_param/background = Color( 0, 0, 0, 1 )
+shader_param/mask_color = Plane( 0.5, 0.5, 0.5, 1 )
+shader_param/OCTAVES = 4
+shader_param/speed = 0.2
+
+[node name="MainNode" type="Control"]
 
 [node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource( 1 )
+
+[node name="ChargeIndicator" type="Control" parent="GUI"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="Background" type="NinePatchRect" parent="GUI/ChargeIndicator"]
+self_modulate = Color( 0.670588, 0.905882, 1, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -128.0
+margin_right = 32.0
+grow_vertical = 0
+rect_min_size = Vector2( 28, 0 )
+mouse_filter = 0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 64, 128 )
+patch_margin_left = 5
+patch_margin_top = 100
+patch_margin_right = 5
+patch_margin_bottom = 28
+axis_stretch_vertical = 2
+
+[node name="Progress" type="TextureProgress" parent="GUI/ChargeIndicator/Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 14.0
+margin_bottom = -7.0
+mouse_filter = 2
+max_value = 0.0
+texture_progress = ExtResource( 4 )
+fill_mode = 3
+tint_progress = Color( 0, 1, 0, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 14
+stretch_margin_top = 3
+stretch_margin_right = 14
+stretch_margin_bottom = 3
 
 [node name="World" type="CanvasLayer" parent="."]
 layer = 0
-script = ExtResource( 1 )
+script = ExtResource( 5 )
 
 [node name="Sectors" type="Control" parent="World"]
+editor/display_folded = true
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Sector1" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector1" parent="World/Sectors" instance=ExtResource( 6 )]
 
-[node name="Sector26" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector26" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 512.0
 margin_right = 640.0
 
-[node name="Sector11" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector11" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_top = 256.0
 margin_bottom = 384.0
 
-[node name="Sector31" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector31" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 512.0
 margin_top = 256.0
 margin_right = 640.0
 margin_bottom = 384.0
 
-[node name="Sector7" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector7" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 256.0
 margin_right = 384.0
 
-[node name="Sector32" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector32" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 768.0
 margin_right = 896.0
 
-[node name="Sector13" parent="World/Sectors" instance=ExtResource( 2 )]
-margin_left = 256.0
-margin_top = 256.0
-margin_right = 384.0
-margin_bottom = 384.0
-
-[node name="Sector39" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector39" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 768.0
 margin_top = 256.0
 margin_right = 896.0
 margin_bottom = 384.0
 
-[node name="Sector3" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector3" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_top = 128.0
 margin_bottom = 256.0
 
-[node name="Sector4" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector4" parent="World/Sectors" instance=ExtResource( 6 )]
+editor/display_folded = true
 margin_left = 128.0
 margin_top = 128.0
 margin_right = 256.0
 margin_bottom = 256.0
 
-[node name="Sector5" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector6" parent="World/Sectors" instance=ExtResource( 6 )]
+editor/display_folded = true
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 384.0
+margin_bottom = 256.0
+
+[node name="Margin" parent="World/Sectors/Sector6" index="2"]
+editor/display_folded = false
+
+[node name="Picture" parent="World/Sectors/Sector6/Margin/Content/Object" index="0"]
+self_modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 7 )
+
+[node name="Fog" parent="World/Sectors/Sector6" index="3"]
+color = Color( 0, 0, 0, 0 )
+
+[node name="Sector5" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 384.0
 margin_top = 128.0
 margin_right = 512.0
 margin_bottom = 256.0
 
-[node name="Sector22" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector14" parent="World/Sectors" instance=ExtResource( 6 )]
+editor/display_folded = true
+margin_left = 384.0
+margin_top = 256.0
+margin_right = 512.0
+margin_bottom = 384.0
+
+[node name="Margin" parent="World/Sectors/Sector14" index="2"]
+editor/display_folded = false
+
+[node name="Picture" parent="World/Sectors/Sector14/Margin/Content/Object" index="0"]
+self_modulate = Color( 0, 0, 1, 1 )
+texture = ExtResource( 8 )
+
+[node name="Fog" parent="World/Sectors/Sector14" index="3"]
+color = Color( 0.501961, 0.501961, 0.501961, 0 )
+
+[node name="Sector22" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 512.0
 margin_top = 128.0
 margin_right = 640.0
 margin_bottom = 256.0
 
-[node name="Sector10" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector10" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_top = 384.0
 margin_bottom = 512.0
 
-[node name="Sector33" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector33" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 512.0
 margin_top = 384.0
 margin_right = 640.0
 margin_bottom = 512.0
 
-[node name="Sector19" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector19" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_top = 512.0
 margin_bottom = 640.0
 
-[node name="Sector28" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector28" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 512.0
 margin_top = 512.0
 margin_right = 640.0
 margin_bottom = 640.0
 
-[node name="Sector6" parent="World/Sectors" instance=ExtResource( 2 )]
-margin_left = 256.0
-margin_top = 128.0
-margin_right = 384.0
-margin_bottom = 256.0
-
-[node name="Sector36" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector36" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 768.0
 margin_top = 128.0
 margin_right = 896.0
 margin_bottom = 256.0
 
-[node name="Sector16" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector16" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 256.0
 margin_top = 384.0
 margin_right = 384.0
 margin_bottom = 512.0
 
-[node name="Sector24" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector24" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 768.0
 margin_top = 384.0
 margin_right = 896.0
 margin_bottom = 512.0
 
-[node name="Sector18" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector18" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 256.0
 margin_top = 512.0
 margin_right = 384.0
 margin_bottom = 640.0
 
-[node name="Sector27" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector27" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 768.0
 margin_top = 512.0
 margin_right = 896.0
 margin_bottom = 640.0
 
-[node name="Sector2" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector2" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 128.0
 margin_right = 256.0
 
-[node name="Sector30" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector30" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 640.0
 margin_right = 768.0
 
-[node name="Sector12" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector12" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 128.0
 margin_top = 256.0
 margin_right = 256.0
 margin_bottom = 384.0
 
-[node name="Sector38" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector41" parent="World/Sectors" instance=ExtResource( 6 )]
+editor/display_folded = true
+margin_left = 256.0
+margin_top = 256.0
+margin_right = 384.0
+margin_bottom = 384.0
+
+[node name="Background" parent="World/Sectors/Sector41" index="0"]
+color = Color( 0, 1, 0, 1 )
+
+[node name="Margin" parent="World/Sectors/Sector41" index="2"]
+editor/display_folded = false
+
+[node name="Picture" parent="World/Sectors/Sector41/Margin/Content/Object" index="0"]
+texture = ExtResource( 9 )
+
+[node name="Player" type="Node" parent="World/Sectors/Sector41/Margin/Content/Object" index="1"]
+script = ExtResource( 10 )
+
+[node name="Body" type="Node" parent="World/Sectors/Sector41/Margin/Content/Object" index="2"]
+script = ExtResource( 11 )
+
+[node name="Energy" type="Node" parent="World/Sectors/Sector41/Margin/Content/Object" index="3"]
+script = ExtResource( 12 )
+
+[node name="Fog" parent="World/Sectors/Sector41" index="3"]
+visible = true
+
+[node name="Sector38" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 640.0
 margin_top = 256.0
 margin_right = 768.0
 margin_bottom = 384.0
 
-[node name="Sector8" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector8" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 384.0
 margin_right = 512.0
 
-[node name="Sector34" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector34" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 896.0
 margin_right = 1024.0
 
-[node name="Sector14" parent="World/Sectors" instance=ExtResource( 2 )]
-margin_left = 384.0
-margin_top = 256.0
-margin_right = 512.0
-margin_bottom = 384.0
-
-[node name="Sector40" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector40" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 896.0
 margin_top = 256.0
 margin_right = 1024.0
 margin_bottom = 384.0
 
-[node name="Sector21" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector21" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 640.0
 margin_top = 128.0
 margin_right = 768.0
 margin_bottom = 256.0
 
-[node name="Sector9" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector9" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 128.0
 margin_top = 384.0
 margin_right = 256.0
 margin_bottom = 512.0
 
-[node name="Sector37" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector37" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 640.0
 margin_top = 384.0
 margin_right = 768.0
 margin_bottom = 512.0
 
-[node name="Sector20" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector20" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 128.0
 margin_top = 512.0
 margin_right = 256.0
 margin_bottom = 640.0
 
-[node name="Sector25" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector25" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 640.0
 margin_top = 512.0
 margin_right = 768.0
 margin_bottom = 640.0
 
-[node name="Sector35" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector35" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 896.0
 margin_top = 128.0
 margin_right = 1024.0
 margin_bottom = 256.0
 
-[node name="Sector15" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector15" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 384.0
 margin_top = 384.0
 margin_right = 512.0
 margin_bottom = 512.0
 
-[node name="Sector23" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector23" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 896.0
 margin_top = 384.0
 margin_right = 1024.0
 margin_bottom = 512.0
 
-[node name="Sector17" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector17" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 384.0
 margin_top = 512.0
 margin_right = 512.0
 margin_bottom = 640.0
 
-[node name="Sector29" parent="World/Sectors" instance=ExtResource( 2 )]
+[node name="Sector29" parent="World/Sectors" instance=ExtResource( 6 )]
 margin_left = 896.0
 margin_top = 512.0
 margin_right = 1024.0
 margin_bottom = 640.0
 
 [node name="RunningArrows" type="Control" parent="World"]
-margin_top = -16.0
+editor/display_folded = true
+visible = false
 margin_right = 128.0
-margin_bottom = 16.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( 0, 16 )
 mouse_filter = 2
-script = ExtResource( 6 )
+script = ExtResource( 13 )
 
 [node name="Shadow" type="ColorRect" parent="World/RunningArrows"]
 material = SubResource( 1 )
@@ -267,3 +374,23 @@ material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+
+[node name="FogOfWar" type="ColorRect" parent="World"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.5, 0.5, 0.5, 1 )
+[connection signal="resized" from="World/RunningArrows" to="World/RunningArrows" method="_on_resized"]
+
+[editable path="World/Sectors/Sector6"]
+
+[editable path="World/Sectors/Sector6/Margin/Content/Object"]
+
+[editable path="World/Sectors/Sector14"]
+
+[editable path="World/Sectors/Sector14/Margin/Content/Object"]
+
+[editable path="World/Sectors/Sector41"]
+
+[editable path="World/Sectors/Sector41/Margin/Content/Object"]
